@@ -1,38 +1,49 @@
-class Cliente
-{
-    nombreCliente;
-    dniCliente;
-    rutCliente;
-}
+/*Importación de clases*/
+import {Cliente} from './Cliente.js'
+import {CuentaCorriente} from './CuentaCorriente.js';
 
-class CuentaCorriente
-{
-    numero;
-    saldo;
-    agencia;
-}
+const cliente = new Cliente();
+cliente.nombreCliente = 'Leonardo';
+cliente.dniCliente = '13804050';
+cliente.rutCliente = '123224';
 
-const cliente1 = new Cliente();
+const cuentaDeLeonardo = new CuentaCorriente();
+cuentaDeLeonardo.numero = '1';
+cuentaDeLeonardo.agencia = '001';
+cuentaDeLeonardo.cliente = cliente;
 
-cliente1.nombreCliente = "José";
-cliente1.dniCliente = "13232";
+//cuentaDeLeonardo.#saldo = 10;
+let saldo = cuentaDeLeonardo.verSaldo(); 
 
-const cuentaCorriente1 = new CuentaCorriente();
-
-cuentaCorriente1.numero = "232323";
-cuentaCorriente1.saldo = 5000;
+saldo = cuentaDeLeonardo.depositoEnCuenta(150);
+console.log('El Saldo actual (CuentaLeonardo) '+saldo);
 
 const cliente2 = new Cliente();
+cliente2.nombreCliente = 'Maria';
+cliente2.dniCliente = '16979808';
+cliente2.rutCliente = '8989';
 
-cliente2.nombreCliente = "Leonardo";
-cliente2.dniCliente = "13804050";
 
-const cuentaCorriente2 = new CuentaCorriente();
+const cuentaDeMaria = new CuentaCorriente();
+cuentaDeMaria.numero = '2';
+cuentaDeMaria.agencia = '002';
+cuentaDeMaria.cliente = cliente2;
 
-cuentaCorriente2.numero = "123434343";
-cuentaCorriente2.saldo = 1000;
+let parametroValor = 100;
 
-console.log(cliente1);
-console.log(cuentaCorriente1);
-console.log(cliente2);
-console.log(cuentaCorriente2);
+console.log('Parámetro Valor',parametroValor);
+cuentaDeLeonardo.transferirParaCuenta(parametroValor,cuentaDeMaria);
+console.log('Parámetro Valor',parametroValor);
+
+const saldoMaria = cuentaDeMaria.verSaldo();
+
+console.log('Cuenta de Maria',cuentaDeMaria);
+
+/*
+
+
+console.log('El Saldo actual (cuentaMaria) '+saldoMaria);
+
+const saldoLeonardo = cuentaDeLeonardo.verSaldo();
+console.log('El Saldo actual (cuentaLeonardo) '+saldoLeonardo);
+*/
