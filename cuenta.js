@@ -1,37 +1,27 @@
-import { Cliente } from "./Cliente.js";
-
-export class CuentaCorriente
-{
+export class Cuenta {
     #cliente;
-    numero;
-    agencia;
     #saldo;
-    static cantidadCuentas = 0;
 
-    set cliente(valor) {
-        if (valor instanceof Cliente)
-            this.#cliente = valor;
-    }
-
-    get cliente() {
-        return this.#cliente;
-    }
-
-    constructor(cliente, numero, agencia) {
-        this.cliente = cliente;
+    constructor(tipo,cliente, numero, agencia, saldo) {
+        this.tipo = tipo;
         this.numero = numero;
         this.agencia = agencia;
-        this.#saldo = 0;
-        CuentaCorriente.cantidadCuentas++;
+        this.#cliente = cliente;
+        this.#saldo = saldo;
     }
 
     depositoEnCuenta(valor) {
+        
         if (valor > 0)
             this.#saldo += valor;
         return this.#saldo;
     }
 
     retirarDeCuenta(valor) {
+        if (this.tipo == 'Corriente')
+            valor = valor * 1.05;
+        else if (this.tipo == 'Ahorros')
+            valor = valor * 1.02
         if (valor <= this.#saldo)
             this.#saldo -= valor;
         return this.#saldo;
