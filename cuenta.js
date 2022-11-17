@@ -2,12 +2,20 @@ export class Cuenta {
     #cliente;
     #saldo;
 
-    constructor(tipo,cliente, numero, agencia, saldo) {
-        this.tipo = tipo;
+    constructor(cliente, numero, agencia, saldo) {
+        this.#cliente = cliente;
         this.numero = numero;
         this.agencia = agencia;
-        this.#cliente = cliente;
         this.#saldo = saldo;
+    }
+
+    set cliente(valor) {
+        if (valor instanceof Cliente)
+            this.#cliente = valor;
+    }
+
+    get cliente() {
+        return this.#cliente;
     }
 
     depositoEnCuenta(valor) {
@@ -18,15 +26,16 @@ export class Cuenta {
     }
 
     retirarDeCuenta(valor) {
-        if (this.tipo == 'Corriente')
-            valor = valor * 1.05;
-        else if (this.tipo == 'Ahorros')
-            valor = valor * 1.02
+        _retirarDeCuenta(valor,0);
+    }
+
+    _retirarDeCuenta(valor,comision) {
+        valor=valor * (1+comision/100);
         if (valor <= this.#saldo)
             this.#saldo -= valor;
         return this.#saldo;
     }
-
+    
     verSaldo() {
         return this.#saldo;
     }
@@ -36,5 +45,9 @@ export class Cuenta {
         cuentaDestino.depositoEnCuenta(valor);
         valor = 200;
         valor = valor*1000;
+    }
+
+    prueba(){
+        console.log('Método padre C.A.');
     }
 }
