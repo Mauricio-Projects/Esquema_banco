@@ -3,6 +3,10 @@ export class Cuenta {
     #saldo;
 
     constructor(cliente, numero, agencia, saldo) {
+        if (this.constructor == Cuenta){
+            throw new console.error('"No se debe instanciar de la clase abstracta (cuenta)!!!"');
+            //console.log('"No se debe instanciar de la clase abstracta (cuenta)!!!"')
+        }
         this.#cliente = cliente;
         this.numero = numero;
         this.agencia = agencia;
@@ -26,7 +30,8 @@ export class Cuenta {
     }
 
     retirarDeCuenta(valor) {
-        _retirarDeCuenta(valor,0);
+        throw new error('Debe implementar el metodo abstracto en la clase propia')
+        
     }
 
     _retirarDeCuenta(valor,comision) {
@@ -35,7 +40,7 @@ export class Cuenta {
             this.#saldo -= valor;
         return this.#saldo;
     }
-    
+
     verSaldo() {
         return this.#saldo;
     }
