@@ -5,7 +5,7 @@ export class Cuenta {
     constructor(cliente, numero, agencia, saldo) {
         if (this.constructor == Cuenta){
             throw new console.error('"No se debe instanciar de la clase abstracta (cuenta)!!!"');
-            //console.log('"No se debe instanciar de la clase abstracta (cuenta)!!!"')
+            
         }
         this.#cliente = cliente;
         this.numero = numero;
