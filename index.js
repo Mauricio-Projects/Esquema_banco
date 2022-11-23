@@ -6,22 +6,38 @@ import { CuentaNomina } from './Cuentas/CuentaNomina.js';
 import { Empleado } from './Empleados/Empleado.js';
 import { Gerente } from './Empleados/gerente.js';
 import { Director } from './Empleados/Director.js';
+import { SistemaAutenticacion } from './SistemaAutenticacion.js';
 
-
-const cliente = new Cliente('Leonardo','13804050','123224');
-const cliente2 = new Cliente('María','16979808','8989');
 
 const empleado = new Empleado('Juan Perez','12345',10000);
+empleado.asignarClave('12345')
+console.log(SistemaAutenticacion.login(empleado, '12345'))
+
 const gerente = new Gerente('Pedro Rivas', '987456',12000);
+gerente.asignarClave('98765')
+console.log(SistemaAutenticacion.login(gerente, '987650'))
+
 const director = new Director('Elena Moreno', '578965',15000);
+director.asignarClave('852258')
+console.log(SistemaAutenticacion.login(director, '852258'))
+
+const cliente = new Cliente('Leonardo','13804050','123224');
+cliente.asignarClave('001')
+console.log(SistemaAutenticacion.login(cliente,'001'))
 
 
-console.log(empleado.verBonificacion())
-console.log(gerente.verBonificacion())
-console.log(director.verBonificacion())
+// const cliente2 = new Cliente('María','16979808','8989');
+// cliente.asignarClave('002')
+// console.log(SistemaAutenticacion.login(cliente,'002'))
+
+
+
 
 
 /*
+console.log(empleado.verBonificacion())
+console.log(gerente.verBonificacion())
+console.log(director.verBonificacion())
 
 const cuentaDeLeonardo = new CuentaCorriente(cliente, '1', '001');
 const cuentaDeMaria = new CuentaCorriente(cliente2,'2','002');
